@@ -62,6 +62,7 @@ class NumberEditor extends React.Component {
         this.onDoubleClick = this.onDoubleClick.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onBlur = this.onBlur.bind(this);
+        this.onFocus = this.onFocus.bind(this);
 
         this.state = {
             startEditing: false,
@@ -92,6 +93,12 @@ class NumberEditor extends React.Component {
 
     onChange(e) {
         this.props.onValueChange(e.target.value);
+    }
+
+    onFocus(e) {
+        this.setState({
+            startEditing: true
+        });
     }
 
     onBlur(e) {
@@ -179,6 +186,7 @@ class NumberEditor extends React.Component {
                 onDoubleClick={this.onDoubleClick}
                 onChange={this.onChange}
                 onBlur={this.onBlur}
+                onFocus={this.onFocus}
             />
         );
     }

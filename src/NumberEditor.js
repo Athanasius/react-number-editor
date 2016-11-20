@@ -166,6 +166,9 @@ class NumberEditor extends React.Component {
         let cursor = 'ew-resize';
         let readOnly = true;
         let value = this.props.value;
+	if (value === 0) {
+	    value = "";
+	}
         if (this.state.startEditing) {
             cursor = 'auto';
             readOnly = false;

@@ -102,7 +102,7 @@ class NumberEditor extends React.Component {
     }
 
     onBlur(e) {
-        this.changeValue(Number(e.target.value));
+        this.changeValue(Number(e.target.value).toFixed(this.props.decimals));
         this.setState({
             startEditing: false
         });
@@ -157,9 +157,10 @@ class NumberEditor extends React.Component {
     changeValue(value) {
         const newVal = clamp(value.toFixed(this.props.decimals), this.props.min, this.props.max);
 
-        if (Number(this.props.value) !== Number(newVal)) {
-            this.props.onValueChange(Number(newVal));
-        }
+	newVal = Number(newVal).toFixed(this.props.decimals);
+        //if (Number(this.props.value) !== Number(newVal)) {
+            this.props.onValueChange(newVal);
+        //}
     }
 
     render() {

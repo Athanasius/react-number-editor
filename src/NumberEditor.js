@@ -155,12 +155,10 @@ class NumberEditor extends React.Component {
     }
 
     changeValue(value) {
-        const newVal = clamp(value.toFixed(this.props.decimals), this.props.min, this.props.max);
+        var newVal = clamp(value.toFixed(this.props.decimals), this.props.min, this.props.max);
 
 	newVal = Number(newVal).toFixed(this.props.decimals);
-        //if (Number(this.props.value) !== Number(newVal)) {
-            this.props.onValueChange(newVal);
-        //}
+        this.props.onValueChange(newVal);
     }
 
     render() {

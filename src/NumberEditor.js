@@ -158,10 +158,7 @@ class NumberEditor extends React.Component {
         const newVal = clamp(value.toFixed(this.props.decimals), this.props.min, this.props.max);
 
         if (Number(this.props.value) !== Number(newVal)) {
-	    if (this.props.value === 0) {
-		this.props.value = "";
-	    }
-            this.props.onValueChange(newVal);
+            this.props.onValueChange(Number(newVal));
         }
     }
 
@@ -177,6 +174,12 @@ class NumberEditor extends React.Component {
         if (this.state.startEditing) {
             cursor = 'auto';
             readOnly = false;
+	    // If the string starts with a decimal point, pre-pend a
+	    // zero.  This keeps it as a valid number so that TABing
+	    // will correctly highlight the value.
+	    if (value.toString().charAt(0) == '.') {
+		value = "0" + value;
+	    }
         }
 
         if (!this.state.startEditing) {

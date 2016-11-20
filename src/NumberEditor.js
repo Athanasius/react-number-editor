@@ -158,6 +158,9 @@ class NumberEditor extends React.Component {
         const newVal = clamp(value.toFixed(this.props.decimals), this.props.min, this.props.max);
 
         if (Number(this.props.value) !== Number(newVal)) {
+	    if (this.props.value === 0) {
+		this.props.value = "";
+	    }
             this.props.onValueChange(newVal);
         }
     }
@@ -166,6 +169,8 @@ class NumberEditor extends React.Component {
         let cursor = 'ew-resize';
         let readOnly = true;
         let value = this.props.value;
+	// If we have a zero we actually want to display it as an empty
+	// string so we don't have to delete '0' before typing.
 	if (value === 0) {
 	    value = "";
 	}

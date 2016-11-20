@@ -155,7 +155,7 @@ class NumberEditor extends React.Component {
     }
 
     changeValue(value) {
-        var newVal = clamp(value.toFixed(this.props.decimals), this.props.min, this.props.max);
+        var newVal = clamp(Number(value).toFixed(this.props.decimals), this.props.min, this.props.max);
 
 	newVal = Number(newVal).toFixed(this.props.decimals);
         this.props.onValueChange(newVal);
